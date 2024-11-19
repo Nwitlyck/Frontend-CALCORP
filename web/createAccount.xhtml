@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body style="background: gray">
+        <h:form >
+            <p:growl id="message" showDetail="true"/>
+            <div style="text-align: center;">
+                <img src="" alt=""/>
+            </div>
+            
+            <p:panelGrid columns="2" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px;">
+                First Name  <p:inputText />
+                Last Name  <p:inputText />
+                Telephone  <p:inputText />
+                Email  <p:inputText />
+                Password  <p:inputText />
+                Repeat Pasword  <p:inputText  />
+                <h:outputText></h:outputText>
+                <p:commandButton value="Create Account"  update="message" actionListener="#{userController.goToIndex()}"/>
+            </p:panelGrid>
+            
+            <p:commandButton value="Cancel"  update="message"  actionListener="#{userController.goToIndex()}"/>
+            
+        </h:form>
+    </h:body>
+</html>
