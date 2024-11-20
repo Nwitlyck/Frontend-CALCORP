@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <body>
+        <form id="pDialog">
+            
+            <p:growl id="message" showDetail="true"/>
+            
+            
+             <p:dialog header="Perfil" showEffect="fade" modal="true"
+                       widgetVar="perfilDialog" responsive="true" id="perfilDialog">
+                 <p:outputPanel id="manage-user-content" class="ui-fluid">
+                      <div class="p-field">
+                            <p:outputLabel>Nombre</p:outputLabel>
+                            <p:inputText/>
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel >Apellido</p:outputLabel>
+                            <p:inputText/>
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel >Email</p:outputLabel>
+                            <p:inputText/>
+                        </div>
+                        <div class="p-field">
+                            <p:outputLabel >Telefono</p:outputLabel>
+                            <p:inputText/>
+                        </div>
+                     <p:commandButton icon="pi pi-pencil" value="Cambiar Contraseña"
+                                         oncomplete="PF('changePassword').show()" process="@this"
+                                         style="margin-top: 5px;"/>
+                 </p:outputPanel>
+             </p:dialog>
+            
+            
+          
+            <p:dialog header="Cambiar Contraseña" showEffect="fade" modal="true"
+                      widgetVar="changePassword" responsive="true">
+                <p:outputPanel id="change-pass" class="ui-fluid">
+                    <p:panelGrid columns="2">
+                        Contraseña  <p:inputText />
+                        Repetir Contraseña  <p:inputText />
+                    </p:panelGrid>
+                    
+                    <p:commandButton value="Confirmar" action="#{userController.confirmar}" update="message" 
+                                     styleClass="mr-2" icon="pi pi-check"  style="margin-top: 5px;">
+                        <p:confirm header="Confirmación" message="Estas seguro de que quieres proceder?" icon="pi pi-exclamation-triangle"/>
+                    </p:commandButton>
+                    
+                </p:outputPanel>
+              
+            </p:dialog>
+            
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" />
+            </p:confirmDialog>
+            
+            <p:sticky target="perfilDialog" />
+
+        </form>
+    </body>
+</html>
+
