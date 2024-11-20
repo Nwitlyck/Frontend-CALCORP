@@ -8,28 +8,57 @@ and open the template in the editor.
 <html  xmlns="http://www.w3.org/1999/xhtml"
 
        xmlns:p="http://primefaces.org/ui"
-       xmlns:f="http://xmlns.jcp.org/jsf/core">
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <body>
         <form id="menu">
             
-            <p:menubar styleClass="custom-menu" id="generalmenu">
+            
+            <p:menubar styleClass="custom-menu" id="generalmenu" >
+                
                     <p:menuitem value="Home" outcome="landingPage" icon="pi pi-fw pi-home">
                     </p:menuitem>
                 
-                    <p:menuitem value="Users" outcome="user" icon="pi pi-fw pi-user">
+                    <p:menuitem value="Computadoras" outcome="computadoras">
                     </p:menuitem>
                     
-                    <p:menuitem value="Vacations" outcome="vacations" icon="pi pi-fw pi-calendar">
+                    <p:menuitem value="Componentes" outcome="componentes">
                     </p:menuitem>
                     
-                    <p:menuitem value="Documents" outcome="documents" icon="pi pi-fw pi-file">
+                    <p:menuitem value="Perifericos" outcome="perifericos">
                     </p:menuitem>
-                    <p:menuitem value="Log Out" icon="pi pi-sign-out"  outcome="index">
+                
+                    <p:menuitem value="Accesorios" outcome="accesorios">
                     </p:menuitem>
+                
+                    <p:menuitem value="Otros" outcome="otros">
+                    </p:menuitem>
+                
+                    <p:divider layout="vertical"/>
+                    
+                    <p:menuitem value="Perfil" oncomplete="PF('perfilDialog').show()" icon="pi pi-user" process="@this">
+                    </p:menuitem>
+                    
+                    <p:menuitem value="Carrito" oncomplete="PF('carritoDialog').show()" icon="pi pi-user" process="@this">
+                    </p:menuitem>
+                    
+                    <p:menuitem value="Salir" outcome="index" icon="pi pi-fw pi-sign-out">
+                    </p:menuitem>
+                   
             </p:menubar>
-
+            
+            <h:form id="perfil">
+                <ui:include src="perfil.xhtml"/>
+            </h:form>
+            
+            <h:form id="carrito">
+                <ui:include src="carrito.xhtml"/>
+            </h:form>
+            
             <p:sticky target="generalmenu" />
 
         </form>
     </body>
 </html>
+

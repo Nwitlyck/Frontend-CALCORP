@@ -62,5 +62,18 @@ public class UserController {
 
         }
     }
+     
+     public void confirmar() {
+        addMessage("Confirmado", "haz aceptado");
+    } 
+     
+     public void comprar() {
+        addMessage("Confirmado", "Haz hecho la compra correctamernte");
+    } 
+     
+     public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
     
 }
