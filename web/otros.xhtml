@@ -17,6 +17,37 @@
             <ui:include src="menu.xhtml"/>
         </h:form>
         
+        
+        <h:form id="cuerpo">
+            
+
+         <p:dataTable id="productos" var="producto" value="#{userController.listaProductos}" rowKey="#{producto.id}" selectionMode="single"
+                     paginator="true" paginatorPosition="both" rows="4">
+
+            <p:column headerText="Imagen">
+                <h:outputText value="#{producto.code}" />
+            </p:column>
+            <p:column headerText="Nombre">
+                <h:outputText value="#{producto.name}" />
+            </p:column>
+            <p:column headerText="Precio">
+                <h:outputText value="#{producto.price}" />
+            </p:column>
+            <p:column headerText="Comprar">
+                <p:commandButton value="Añadir al carrito" actionListener="#{userController.añadirCarrito(producto.id)}" update="menu" 
+                                     styleClass="mr-2" icon="pi pi-shopping-cart"  style="margin-top: 5px;">
+                         <p:confirm header="Confirmación" message="Estas seguro de que quieres proceder?" icon="pi pi-exclamation-triangle"/>
+                    </p:commandButton> 
+                
+            </p:column>
+        </p:dataTable>
+        
+        
+        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" />
+            </p:confirmDialog>
+        </h:form>
        
     </h:body>
 </html>

@@ -18,33 +18,46 @@ and open the template in the editor.
                        widgetVar="carritoDialog" responsive="true" id="carritoDialog">
                  <p:outputPanel id="manage-cart" class="ui-fluid">
                      
-                     <p:commandButton icon="pi pi-pencil" value="Comprar"
-                                         oncomplete="PF('compraDialog').show()" process="@this"
-                                         style="margin-top: 5px;"/>
+                     <p:commandButton value="Actualizar" update="productos" />
                      
+                     <p:dataTable id="productos" var="producto" value="#{userController.carrito}" rowKey="#{producto.id}" selectionMode="single"
+                     paginator="true" paginatorPosition="top" rows="2">
+
+            <p:column headerText="Imagen">
+                <h:outputText value="#{producto.code}" />
+            </p:column>
+            <p:column headerText="Nombre">
+                <h:outputText value="#{producto.name}" />
+            </p:column>
+            <p:column headerText="Precio">
+                <h:outputText value="#{producto.price}" />
+            </p:column>
+        </p:dataTable>
+        
+                  
+                  <p:selectBooleanCheckbox value="#{userController.flag}" itemLabel="¿Utilizar información distinta?" />  
+                  <p:panelGrid columns="2" rendered="#{userController.flag}" id="opcion">
+                      Email:  <p:inputText/>
+                      Telefono  <p:inputText />
+                  </p:panelGrid>
+                  
                      
-                     
-                     
-                 </p:outputPanel>
-             </p:dialog>
-            
-            <p:dialog showEffect="fade" hideEffect="fade" responsive="true"  widgetVar="compraDialog" id="compraDialog">
-                <p:panelGrid columns="2">
-                        Direccion  <p:inputText />
-                        Metodo de pago  
-                        <p:selectOneButton >
-                            <f:selectItem itemLabel="Paypal" itemValue="Paypal"/>
-                            <f:selectItem itemLabel="Tarjeta" itemValue="Tarjeta"/>
-                            <f:selectItem itemLabel="Efectivo" itemValue="Efectivo"/>
-                        </p:selectOneButton>
-                    </p:panelGrid>
-                
-                <p:commandButton value="Comprar" action="#{userController.comprar}" update="message" 
+                  
+                     <p:commandButton value="Cotizar" action="#{userController.comprar}" update="message" 
                                      styleClass="mr-2" icon="pi pi-check"  style="margin-top: 5px;">
                          <p:confirm header="Confirmación" message="Estas seguro de que quieres proceder?" icon="pi pi-exclamation-triangle"/>
                     </p:commandButton> 
+                  
+                  <p:commandButton value="Vaciar carrito" action="#{userController.eliminarCarrito}" update="productos" 
+                                     styleClass="mr-2" icon="pi pi-check"  style="margin-top: 5px;">
+                         <p:confirm header="Confirmación" message="Estas seguro de que quieres proceder?" icon="pi pi-exclamation-triangle"/>
+                    </p:commandButton> 
+      
+                     
+                 </p:outputPanel>
+             </p:dialog>
                 
-            </p:dialog>
+                
             
              <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
                 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
